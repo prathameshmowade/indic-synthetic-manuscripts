@@ -1,3 +1,4 @@
+# Layout & Rendering Engine for Historical Folios
 import os
 import math
 import random
