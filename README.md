@@ -2,6 +2,13 @@
 
 A modular Python pipeline for synthesizing realistic historical Indic manuscript folios with synchronized ground-truth text annotations. Designed to generate training data for Indic Optical Character Recognition (OCR) and document analysis models.
 
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/prathameshmowade/indic-synthetic-manuscripts)
+[![Hugging Face Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue)](https://huggingface.co/datasets/prathameshmowade/synthetic-indic-manuscripts)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+
+> **Hugging Face Dataset Name:** [`prathameshmowade/synthetic-indic-manuscripts`](https://huggingface.co/datasets/prathameshmowade/synthetic-indic-manuscripts)  
+> **GitHub Repository:** [`prathameshmowade/indic-synthetic-manuscripts`](https://github.com/prathameshmowade/indic-synthetic-manuscripts)
+
 ## Features
 
 - **Script Support:** Generates folios for Devanagari, Modi, and Sharada scripts with OpenType conjunct and ligature shaping.
@@ -35,7 +42,7 @@ A modular Python pipeline for synthesizing realistic historical Indic manuscript
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/indic-synthetic-manuscripts.git
+git clone https://github.com/prathameshmowade/indic-synthetic-manuscripts.git
 cd indic-synthetic-manuscripts
 ```
 
@@ -124,15 +131,33 @@ Each image file `Image_X.png` is paired with an exact ground-truth Markdown file
 
 ---
 
-## Uploading to Hugging Face Hub
-
-To publish the dataset to Hugging Face:
-
+## Hugging Face Dataset
+ 
+- **Dataset Name:** `prathameshmowade/synthetic-indic-manuscripts`
+- **Dataset URL:** [https://huggingface.co/datasets/prathameshmowade/synthetic-indic-manuscripts](https://huggingface.co/datasets/prathameshmowade/synthetic-indic-manuscripts)
+- **Task Categories:** `image-to-text`, `optical-character-recognition`
+- **Supported Scripts:** Devanagari (`sa`, `hi`), Modi (`mr`), Sharada (`sa`)
+- **Total Folios:** 300 paired images & ground-truth annotations (85% train, 10% validation, 5% test)
+ 
+### 1. Uploading to Hugging Face Hub
 ```bash
 # Set your token or pass via --token
 export HF_TOKEN="your_hf_write_token"
 
-python hf_upload.py --repo-id <username>/synthetic-indic-manuscripts
+python hf_upload.py --repo-id prathameshmowade/synthetic-indic-manuscripts
+```
+
+### 2. Loading with the `datasets` Library
+```python
+from datasets import load_dataset
+
+# Load the dataset directly from Hugging Face Hub
+dataset = load_dataset("prathameshmowade/synthetic-indic-manuscripts", "devanagari")
+
+# Access train, validation, or test folios
+sample = dataset["train"][0]
+print("Image file:", sample["file_name"])
+print("Ground truth text:", sample["text"])
 ```
 
 ---
